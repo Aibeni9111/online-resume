@@ -1,0 +1,13 @@
+name: Keep backend warm
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl Render health
+        run: |
+          curl -sS -m 10 https://online-resume-qmba.onrender.com/api/healthz || true
