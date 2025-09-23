@@ -98,7 +98,7 @@ export function Nav({ fullName }: NavProps) {
                         </span>
                         <div className="hidden sm:flex flex-col leading-tight">
                             <span className="text-[11px] font-semibold uppercase tracking-[0.5em] text-slate-500 dark:text-white">
-                                Portfolio
+                                PhotoPortflio
                             </span>
                             <span className="text-base font-semibold text-slate-900 dark:text-white">
                                 {fullName || "Aibek Taalaibekov"}

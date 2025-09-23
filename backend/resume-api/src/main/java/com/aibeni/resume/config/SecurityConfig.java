@@ -13,7 +13,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults())   // <— вот это включает CORS-обработку
+                .cors(Customizer.withDefaults())   // ВКЛЮЧИТЬ CORS В SECURITY
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());
         return http.build();
     }
