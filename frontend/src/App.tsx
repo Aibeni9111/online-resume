@@ -17,6 +17,7 @@ import Gallery from "./pages/Gallery";
 
 import p1 from './assets/p1.png'
 
+
 function Home() {
     const [profile, setProfile] = useState<ProfileDto | null>(null);
     const [skills, setSkills] = useState<SkillDto[]>([]);

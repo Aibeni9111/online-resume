@@ -15,7 +15,6 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOriginPatterns(
                                 "http://localhost:5173",
-                                "https://*.vercel.app",
                                 "https://*.github.io" // покрывает https://aibeni9111.github.io
                         )
                         .allowedMethods("GET","POST","PUT","PATCH","DELETE","OPTIONS")

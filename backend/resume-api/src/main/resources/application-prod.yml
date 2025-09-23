@@ -1,4 +1,6 @@
 spring:
+  main:
+    lazy-initialization: true
   datasource:
 
     url: ${DB_URL}
@@ -6,12 +8,14 @@ spring:
     password: ${DB_PASS}
     driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 10
-      minimum-idle: 2
-      idle-timeout: 600000
-      max-lifetime: 1800000
-      connection-timeout: 20000
+        minimum-idle: 0          # не держим лишние коннекты на простое
+        maximum-pool-size: 5
+        connection-timeout: 10000       # 10s ожидание коннекта
+        idle-timeout: 60000             # 1 мин: бездействие -> закрыли
+        max-lifetime: 1800000           # 30 мин
+        keepalive-time: 300000
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: validate
     properties:

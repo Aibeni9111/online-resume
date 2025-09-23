@@ -10,6 +10,13 @@ applyInitialTheme();
 // @ts-ignore
 import "@fontsource-variable/inter";
 
+import { api } from 'src/api';
+
+async function warmUp() {
+    try { await api.get('/healthz'); } catch {}
+}
+warmUp();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <ErrorBoundary>
