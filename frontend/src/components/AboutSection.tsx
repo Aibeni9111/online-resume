@@ -30,8 +30,7 @@ export function AboutSection({ text }: { text: string }) {
                         paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)
                     ) : (
                         <p>
-                            Product-minded engineer crafting interfaces that feel effortless and deliver measurable impact for
-                            businesses.
+                            Produktdenkender Ingenieur, der mühelose Benutzeroberflächen entwickelt, die messbaren Mehrwert für Unternehmen schaffen.
                         </p>
                     )}
                 </div>
