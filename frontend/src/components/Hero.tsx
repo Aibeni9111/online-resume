@@ -1,4 +1,6 @@
 import type { ProfileDto } from "../types";
+import cvPdf from '../assets/cv.pdf'
+import Taalaibekov_Aibek from '../assets/Taalaibekov_Aibek.png';
 
 export function Hero({ profile }: { profile: ProfileDto }) {
     const cvHref = "../assets/cv.pdf";
@@ -43,9 +45,7 @@ export function Hero({ profile }: { profile: ProfileDto }) {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-4">
-                        <a href={cvHref} download className="glass-button">
-                            Download CV
-                        </a>
+                        <a href={cvPdf} download>CV herunterladen</a>
                         <a href={contactHref} className="glass-button" data-variant="ghost">
                             Schreib mir!
                         </a>
@@ -93,8 +93,7 @@ export function Hero({ profile }: { profile: ProfileDto }) {
                 <div className="relative">
                     <div className="surface relative mx-auto w-full max-w-[420px] overflow-hidden p-8">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.32),_transparent_70%)]" />
-                        <img
-                            src="..//src/assets/Taalaibekov_Aibek.png"
+                            < img src = {Taalaibekov_Aibek}
                             alt={profile.fullName}
                             className="relative z-10 mx-auto h-[320px] w-auto object-contain drop-shadow-[0_25px_70px_rgba(15,23,42,0.3)]"
                         />

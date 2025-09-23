@@ -1,11 +1,10 @@
 // src/pages/Gallery.tsx
 import { Link } from "react-router-dom";
+import p1 from '../assets/p1.png'
+import p2 from '../assets/p2.png'
+import p3 from '../assets/p3.png'
 
-const IMAGES = [
-    "../assets/p1.png",
-    "../assets/p2.png",
-    "../assets/p3.png",
-];
+export const IMAGES = [p1, p2, p3];
 
 export default function Gallery() {
     return (
