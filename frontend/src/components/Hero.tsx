@@ -94,7 +94,7 @@ export function Hero({ profile }: { profile: ProfileDto }) {
                     <div className="surface relative mx-auto w-full max-w-[420px] overflow-hidden p-8">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.32),_transparent_70%)]" />
                         <img
-                            src="/frontend/src/assets/Taalaibekov_Aibek.png"
+                            src="..//src/assets/Taalaibekov_Aibek.png"
                             alt={profile.fullName}
                             className="relative z-10 mx-auto h-[320px] w-auto object-contain drop-shadow-[0_25px_70px_rgba(15,23,42,0.3)]"
                         />
