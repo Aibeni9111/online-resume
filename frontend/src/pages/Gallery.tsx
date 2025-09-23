@@ -2,9 +2,9 @@
 import { Link } from "react-router-dom";
 
 const IMAGES = [
-    "/photos/p1.png",
-    "/photos/p2.png",
-    "/photos/p3.png",
+    "../assets/p1.png",
+    "../assets/p2.png",
+    "../assets/p3.png",
 ];
 
 export default function Gallery() {
@@ -16,7 +16,7 @@ export default function Gallery() {
                     to="/"
                     className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm hover:bg-gray-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
                 >
-                    ��? Home Page
+                     Home Page
                 </Link>
             </header>
 
@@ -30,7 +30,7 @@ export default function Gallery() {
                             rel="noreferrer"
                             className="group block overflow-hidden rounded-2xl border border-gray-200 bg-white hover:shadow-md transition
                          dark:border-neutral-800 dark:bg-neutral-900"
-                            title="�z�'ѧ�?�<�'�O �� Ѩ��ѯѫ��Ѭ �?����Ѭ��?��"
+                            title="gallery"
                         >
                             <img
                                 src={src}

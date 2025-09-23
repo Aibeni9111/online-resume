@@ -1,7 +1,7 @@
 import type { ProfileDto } from "../types";
 
 export function Hero({ profile }: { profile: ProfileDto }) {
-    const cvHref = "/cv.pdf";
+    const cvHref = "../assets/cv.pdf";
     const contactHref = profile.email ? `mailto:${profile.email}` : "#contacts";
     const websiteHref = profile.website || undefined;
 
@@ -94,7 +94,7 @@ export function Hero({ profile }: { profile: ProfileDto }) {
                     <div className="surface relative mx-auto w-full max-w-[420px] overflow-hidden p-8">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.32),_transparent_70%)]" />
                         <img
-                            src="/Taalaibekov_Aibek.png"
+                            src="/frontend/src/assets/Taalaibekov_Aibek.png"
                             alt={profile.fullName}
                             className="relative z-10 mx-auto h-[320px] w-auto object-contain drop-shadow-[0_25px_70px_rgba(15,23,42,0.3)]"
                         />
@@ -104,7 +104,7 @@ export function Hero({ profile }: { profile: ProfileDto }) {
                         <div>
                             <div className="text-xs uppercase tracking-[0.45em] text-slate-500 dark:text-white">Status</div>
                             <div className="mt-2 text-lg font-semibold text-slate-900 dark:text-white">
-                                Ich bin offen fǬr neue berufliche Herausforderungen!
+                                Ich bin offen für neue berufliche Herausforderungen!
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { toggleTheme } from "../theme";
+import logo from '../assets/Logo.png';
+
 
 type NavProps = {
     fullName?: string;
@@ -91,7 +93,7 @@ export function Nav({ fullName }: NavProps) {
                 <div className="container-p flex h-20 items-center justify-between">
                     <a href="#main" className="flex items-center gap-3">
                         <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white shadow ring-1 ring-slate-900/10 dark:bg-white/10 dark:ring-white/10">
-                            <img src="/Logo.png" alt="Logo" className="h-7 w-7 object-contain" />
+                            <img src="..//assets/Logo.png" alt="Logo" className="h-7 w-7 object-contain" />
                         </span>
                         <div className="hidden sm:flex flex-col leading-tight">
                             <span className="text-[11px] font-semibold uppercase tracking-[0.5em] text-slate-500 dark:text-white">

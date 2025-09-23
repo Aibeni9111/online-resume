@@ -105,7 +105,7 @@ function Home() {
                                 <div className="relative z-10 space-y-4">
                                     <div className="relative h-48 overflow-hidden rounded-2xl">
                                         <img
-                                            src="/photos/p1.png"
+                                            src="../assets/hero1.jpg"
                                             alt="Galerie-Vorschau"
                                             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                         />

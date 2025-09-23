@@ -156,7 +156,7 @@ export function ContactSection({ profile }: { profile: ProfileDto }) {
                         zusammenarbeiten
                     </div>
                     <p className="text-sm leading-relaxed text-slate-600 dark:text-white">
-                        Ich liebe es, mit Teams zusammenzuarbeiten, die schnell liefern und sich um Qualit��t kǬmmern. Hinterlassen Sie eine kurze Notiz und ich melde mich innerhalb von 24 Stunden bei Ihnen.
+                        Die Arbeit in leistungsorientierten Teams, die Qualität und termingerechte Lieferung priorisieren, entspricht meiner Arbeitsweise. Für weitere Informationen stehe ich gerne zur Verfügung – ich melde mich binnen 24 Stunden zurück.
                     </p>
                 </div>
                 <a href={profile.email ? `mailto:${profile.email}` : undefined} className="glass-button">
