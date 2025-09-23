@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface-light: rgba(255, 255, 255, 0.72);
+  --surface-light-border: rgba(148, 163, 184, 0.28);
+  --surface-dark: rgba(15, 23, 42, 0.55);
+  --surface-dark-border: rgba(148, 163, 184, 0.18);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased text-slate-900;
+    min-height: 100vh;
+    position: relative;
+    background:
+            radial-gradient(circle at 20% 20%, rgba(180, 198, 255, 0.45), transparent 55%),
+            radial-gradient(circle at 80% 0%, rgba(125, 211, 252, 0.32), transparent 50%),
+            linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(241, 245, 249, 0.92));
+  }
+
+  .dark body {
+    @apply text-white;
+    background:
+            radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.65), transparent 55%),
+            radial-gradient(circle at 85% 10%, rgba(45, 212, 191, 0.35), transparent 45%),
+            linear-gradient(160deg, #0f172a 10%, #020617 70%);
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+            repeating-linear-gradient(135deg,
+            rgba(255, 255, 255, 0.12) 0px,
+            rgba(255, 255, 255, 0.12) 1px,
+            transparent 1px,
+            transparent 16px);
+    mix-blend-mode: soft-light;
+    opacity: 0.55;
+    z-index: -1;
+  }
+
+  .dark body::before {
+    background:
+            repeating-linear-gradient(135deg,
+            rgba(148, 163, 184, 0.05) 0px,
+            rgba(148, 163, 184, 0.05) 1px,
+            transparent 1px,
+            transparent 14px);
+    opacity: 0.6;
+  }
+
+  ::selection {
+    background: rgba(165, 180, 252, 0.45);
+    color: inherit;
+  }
+
+  .dark ::selection {
+    background: rgba(129, 140, 248, 0.6);
+  }
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate3d(-12%, -8%, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(8%, 4%, 0) scale(1.08);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(-6%, 10%, 0) scale(1.02);
+    opacity: 0.6;
+  }
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@layer utilities {
+  .container-p {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+  }
+
+  .section {
+    @apply relative mb-24 scroll-mt-36;
+  }
+
+  .section-title {
+    @apply flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.38em]  dark:text-white;
+  }
+
+  .section-title::before {
+    content: "";
+    @apply h-px w-12 rounded-full bg-gradient-to-r from-indigo-400 via-sky-400 to-transparent dark:from-indigo-500/70 dark:via-sky-500/60;
+  }
+
+  .section-title__eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.5em] text-indigo-500 dark:text-white;
+  }
+
+  .section-title__heading {
+    @apply text-3xl font-semibold tracking-tight text-slate-900 dark:text-white;
+  }
+
+  .surface {
+    @apply relative overflow-hidden rounded-3xl border border-slate-200/60 bg-white/80 backdrop-blur-xl shadow-[0_30px_60px_-35px_rgba(30,64,175,0.45)];
+  }
+
+  .dark .surface {
+    @apply border-white/10 bg-white/10 shadow-[0_30px_90px_-25px_rgba(99,102,241,0.55)];
+  }
+
+  .surface::after {
+    content: "";
+    position: absolute;
+    inset: -120% -40%;
+    background: linear-gradient(120deg, transparent 30%, rgb(255, 255, 255) 50%, transparent 70%);
+    animation: shimmer 22s linear infinite;
+    opacity: 0.15;
+  }
+
+  /*
+   * Here's the fix. We've removed the "&"
+   * as it is not needed here and was causing the error.
+   */
+  .surface > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glass-button {
+    @apply inline-flex items-center gap-2 rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-5 py-2.5 text-sm font-semibold text-indigo-600 transition duration-200 hover:bg-indigo-500/15 hover:shadow-lg hover:shadow-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-400/40 dark:text-white dark:border-indigo-300/30 dark:hover:bg-indigo-300/10;
+  }
+
+  .glass-button[data-variant='ghost'] {
+    @apply border-transparent bg-white/80 text-slate-900 hover:bg-white focus:ring-slate-200/70 dark:bg-white/10 dark:text-white dark:hover:bg-white/15 dark:focus:ring-indigo-500/40;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-100/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-700;
+  }
+
+  .dark .badge {
+    @apply border-indigo-400/30 bg-indigo-500/15 text-indigo-200;
+  }
+
+  .dark .text-slate-900,
+  .dark .text-slate-950 {
+    color: #ffffff;
+  }
+
+  .timeline-line {
+    position: absolute;
+    inset: 0;
+    margin-left: 0.85rem;
+    width: 1px;
+    background: linear-gradient(180deg, rgba(129, 140, 248, 0.55), rgba(8, 47, 73, 0));
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+a {
+  @apply font-medium text-indigo-600 transition-colors;
+}
+
+a:hover {
+  color: #847cea;
+}
+
+.dark a {
+  @apply text-indigo-300;
+}
+
+.dark a:hover {
+  color: #ffffff;
+}
+
+button {
+  @apply rounded-xl px-4 py-2 font-medium transition;
+}
+
