@@ -1,10 +1,12 @@
 // src/pages/Gallery.tsx
 import { Link } from "react-router-dom";
-import p1 from '../assets/p1.png'
-import p2 from '../assets/p2.png'
-import p3 from '../assets/p3.png'
 
-export const IMAGES = [p1, p2, p3];
+// ВАЖНО: из src/pages → поднимаемся на уровень вверх к src/assets
+import p1 from "../assets/p1.png";
+import p2 from "../assets/p2.png";
+import p3 from "../assets/p3.png";
+
+const IMAGES = [p1, p2, p3];
 
 export default function Gallery() {
     return (
@@ -15,7 +17,7 @@ export default function Gallery() {
                     to="/"
                     className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm hover:bg-gray-50 dark:border-neutral-700 dark:hover:bg-neutral-800"
                 >
-                     Home Page
+                    Home Page
                 </Link>
             </header>
 
@@ -29,14 +31,9 @@ export default function Gallery() {
                             rel="noreferrer"
                             className="group block overflow-hidden rounded-2xl border border-gray-200 bg-white hover:shadow-md transition
                          dark:border-neutral-800 dark:bg-neutral-900"
-                            title="gallery"
+                            title={`gallery-${i + 1}`}
                         >
-                            <img
-                                src={src}
-                                alt={`photo-${i + 1}`}
-                                className="w-full h-56 object-cover group-hover:scale-[1.02] transition-transform duration-300"
-                                loading="lazy"
-                            />
+                            <img src={src} alt={`Photo ${i + 1}`} loading="lazy" />
                         </a>
                     ))}
                 </div>

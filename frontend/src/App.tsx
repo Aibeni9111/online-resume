@@ -15,7 +15,7 @@ import { AuroraBackground } from "./components/AuroraBackground";
 
 import Gallery from "./pages/Gallery";
 
-import photo1 from '../assets/p1.png'
+import p1 from './assets/p1.png'
 
 function Home() {
     const [profile, setProfile] = useState<ProfileDto | null>(null);
@@ -106,7 +106,7 @@ function Home() {
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.18),_transparent_65%)] transition group-hover:opacity-100" />
                                 <div className="relative z-10 space-y-4">
                                     <div className="relative h-48 overflow-hidden rounded-2xl">
-                                        <img src={photo1}
+                                        <img src={p1}
                                         alt="Galerie-Vorschau"
                                             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                                         />
