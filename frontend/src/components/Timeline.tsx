@@ -9,7 +9,7 @@ function formatDate(value?: string | null) {
 
 export function Timeline({ items }: { items: ExperienceDto[] }) {
     if (!items?.length) {
-        return <div className="text-slate-500 dark:text-white">Experience timeline will appear soon.</div>;
+        return <div className="text-slate-500 dark:text-white">Experience timeline.</div>;
     }
 
     return (

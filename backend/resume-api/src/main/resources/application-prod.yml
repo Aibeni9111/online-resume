@@ -1,12 +1,27 @@
 spring:
-  mvc:
-    cors:
-      mappings:
-        "[/**]":
-          allowed-origin-patterns:
-            - "http://localhost:5173"
-            - "https://aibeni9111.github.io"
-            - "https://*.github.io"
-          allowed-methods: "GET,POST,PUT,PATCH,DELETE,OPTIONS"
-          allowed-headers: "*"
-          allow-credentials: true
+  main:
+    lazy-initialization: true
+  datasource:
+
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+        minimum-idle: 0          # не держим лишние коннекты на простое
+        maximum-pool-size: 5
+        connection-timeout: 10000       # 10s ожидание коннекта
+        idle-timeout: 60000             # 1 мин: бездействие -> закрыли
+        max-lifetime: 1800000           # 30 мин
+        keepalive-time: 300000
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+server:
+  port: ${PORT:8080}
