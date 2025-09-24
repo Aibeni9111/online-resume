@@ -1,9 +1,23 @@
 spring:
-  web:
+  mvc:
     cors:
       mappings:
         "/api/**":
-          allowed-origins: "https://aibeni9111.github.io"
-          allowed-methods: "GET,POST,PUT,DELETE,OPTIONS,PATCH"
-          allowed-headers: "*"
-          # allow-credentials: true
+          allowed-origins:
+            - "https://aibeni9111.github.io"
+            - "http://localhost:5173"   # для Vite при локалке
+          allowed-methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+            - PATCH
+          allowed-headers:
+            - "*"
+          allow-credentials: false
+
+    contentnegotiation:
+      favor-parameter: false
+      favor-path-extension: false
+      default-content-type: application/json

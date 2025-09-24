@@ -1,10 +1,11 @@
 package com.aibeni.resume.profile;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/profile")
+@RequestMapping(value = "/api/profile", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ProfileController {
     private final ProfileRepository repo;
 
