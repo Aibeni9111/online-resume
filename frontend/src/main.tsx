@@ -7,7 +7,7 @@ import { ErrorBoundary } from "./ErrorBoundary";
 import { applyInitialTheme } from "./theme";
 import { BrowserRouter } from "react-router-dom";
 applyInitialTheme();
-// @ts-ignore
+
 import "@fontsource-variable/inter";
 
 

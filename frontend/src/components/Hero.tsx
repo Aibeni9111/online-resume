@@ -1,9 +1,8 @@
 import type { ProfileDto } from "../types";
-import cvPdf from '../assets/cv.pdf'
+import cv from '../assets/cv.pdf';
 import Taalaibekov_Aibek from '../assets/Taalaibekov_Aibek.png';
 
 export function Hero({ profile }: { profile: ProfileDto }) {
-    const cvHref = "../assets/cv.pdf";
     const contactHref = profile.email ? `mailto:${profile.email}` : "#contacts";
     const websiteHref = profile.website || undefined;
 
@@ -45,7 +44,7 @@ export function Hero({ profile }: { profile: ProfileDto }) {
                     </div>
 
                     <div className="flex flex-wrap items-center gap-4">
-                        <a href={cvPdf} download>CV herunterladen</a>
+                        <a href={cv} download>CV herunterladen</a>
                         <a href={contactHref} className="glass-button" data-variant="ghost">
                             Schreib mir!
                         </a>

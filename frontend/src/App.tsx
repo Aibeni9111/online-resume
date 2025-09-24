@@ -25,25 +25,46 @@ function Home() {
     const [experience, setExperience] = useState<ExperienceDto[]>([]);
     const [error, setError] = useState<string | null>(null);
 
+
+    type ApiArrayLike<T> = T[] | { items?: T[] } | Record<string, T> | null | undefined;
+
+    const isRecord = (v: unknown): v is Record<string, unknown> =>
+        typeof v === "object" && v !== null;
+
+    const normalizeArray = <T,>(v: unknown): T[] => {
+        if (Array.isArray(v)) return v as T[];
+        if (isRecord(v)) {
+            const maybeItems = (v as { items?: unknown }).items;
+            if (Array.isArray(maybeItems)) return maybeItems as T[];
+            return Object.values(v) as T[]; // допускаем словарь {id: T}
+        }
+        return [];
+    };
+
+
     useEffect(() => {
         const profileId = 1;
         (async () => {
             try {
                 setError(null);
+
                 const [profileRes, skillsRes, projectsRes, experienceRes] = await Promise.all([
                     api.get<ProfileDto>(`/api/profile/${profileId}`),
-                    api.get<SkillDto[]>(`/api/skills/${profileId}`),
-                    api.get<ProjectDto[]>(`/api/projects/${profileId}`),
-                    api.get<ExperienceDto[]>(`/api/experience/${profileId}`),
+                    api.get<ApiArrayLike<SkillDto>>(`/api/skills/${profileId}`),
+                    api.get<ApiArrayLike<ProjectDto>>(`/api/projects/${profileId}`),
+                    api.get<ApiArrayLike<ExperienceDto>>(`/api/experience/${profileId}`),
                 ]);
+
                 setProfile(profileRes.data);
-                setSkills(skillsRes.data);
-                setProjects(projectsRes.data);
-                setExperience(experienceRes.data);
-            } catch (err: any) {
-                console.error(err);
-                const message = err?.message || "Beim Laden des Profils ist ein Fehler aufgetreten.";
+                setSkills(normalizeArray<SkillDto>(skillsRes.data));
+                setProjects(normalizeArray<ProjectDto>(projectsRes.data));
+                setExperience(normalizeArray<ExperienceDto>(experienceRes.data));
+            } catch (err) {
+                const message = err instanceof Error
+                    ? err.message
+                    : "Beim Laden des Profils ist ein Fehler aufgetreten.";
                 setError(message);
+                console.error(err);
             }
         })();
     }, []);
