@@ -1,12 +1,13 @@
 package com.aibeni.resume.experience;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @CrossOrigin(origins = "https://aibeni9111.github.io")
 @RestController
-@RequestMapping("/api/experience")
+@RequestMapping(value = "/api/experience", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ExperienceController {
     private final ExperienceRepository repo;
 

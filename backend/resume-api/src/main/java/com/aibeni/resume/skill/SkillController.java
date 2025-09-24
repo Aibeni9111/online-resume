@@ -1,10 +1,11 @@
 package com.aibeni.resume.skill;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api/skills", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SkillController {
     private final SkillRepository repo;
     public SkillController(SkillRepository repo) { this.repo = repo; }
