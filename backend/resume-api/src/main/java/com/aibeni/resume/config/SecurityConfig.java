@@ -14,14 +14,13 @@ import java.util.List;
 
 @Configuration
 public class SecurityConfig {
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults()) // <<< ВКЛЮЧАЕМ CORS в Security
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // preflight
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyRequest().permitAll()
                 );
         return http.build();
@@ -29,24 +28,18 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration cfg = new CorsConfiguration();
-
-        // Разрешаем РОВНО твой фронт (и локалхост для разработки):
+        var cfg = new CorsConfiguration();
         cfg.setAllowedOrigins(List.of(
-                "https://aibeni9111.github.io",
-                "http://localhost:5173"
+                "https://aibeni9111.github.io",   // прод-фронт
+                "http://localhost:5173"           // локал-фронт
         ));
-
         cfg.setAllowedMethods(List.of("GET","POST","PUT","PATCH","DELETE","OPTIONS"));
         cfg.setAllowedHeaders(List.of("*"));
+        // ВНИМАНИЕ: credentials не нужны → не включаем
+        cfg.setAllowCredentials(false);
 
-        // Куки между доменами тебе не нужны -> НЕ включаем credentials
-        // cfg.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource src = new UrlBasedCorsConfigurationSource();
-        // Если все контроллеры под /api — привязываем к нему:
+        var src = new UrlBasedCorsConfigurationSource();
         src.registerCorsConfiguration("/api/**", cfg);
-        // (можно поставить "/**", если у тебя есть ещё эндпоинты)
         return src;
     }
 }
