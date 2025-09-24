@@ -45,29 +45,33 @@ function Home() {
     useEffect(() => {
         const profileId = 1;
         (async () => {
-            try {
-                setError(null);
+            setError(null);
 
-                const [profileRes, skillsRes, projectsRes, experienceRes] = await Promise.all([
-                    api.get<ProfileDto>(`/api/profile/${profileId}`),
-                    api.get<ApiArrayLike<SkillDto>>(`/api/skills/${profileId}`),
-                    api.get<ApiArrayLike<ProjectDto>>(`/api/projects/${profileId}`),
-                    api.get<ApiArrayLike<ExperienceDto>>(`/api/experience/${profileId}`),
-                ]);
+            const [p, s, pr, e] = await Promise.allSettled([
+                api.get<ProfileDto>(`/api/profile/${profileId}`),
+                api.get<ApiArrayLike<SkillDto>>(`/api/skills/${profileId}`),
+                api.get<ApiArrayLike<ProjectDto>>(`/api/projects/${profileId}`),
+                api.get<ApiArrayLike<ExperienceDto>>(`/api/experience/${profileId}`),
+            ]);
 
-                setProfile(profileRes.data);
-                setSkills(normalizeArray<SkillDto>(skillsRes.data));
-                setProjects(normalizeArray<ProjectDto>(projectsRes.data));
-                setExperience(normalizeArray<ExperienceDto>(experienceRes.data));
-            } catch (err) {
-                const message = err instanceof Error
-                    ? err.message
-                    : "Beim Laden des Profils ist ein Fehler aufgetreten.";
-                setError(message);
-                console.error(err);
-            }
-        })();
+            // helper
+            const ok = <T,>(r: PromiseSettledResult<T>): r is PromiseFulfilledResult<T> => r.status === "fulfilled";
+            const norm = <T,>(v: unknown): T[] => Array.isArray(v) ? v as T[] :
+                (typeof v === "object" && v && Array.isArray((v as any).items)) ? (v as any).items as T[] :
+                    (typeof v === "object" && v) ? Object.values(v as Record<string, T>) : [];
+
+            if (ok(p)) setProfile(p.value.data);
+            else setError(p.reason?.message ?? "Profil konnte nicht geladen werden.");
+
+            setSkills(ok(s) ? norm<SkillDto>(s.value.data) : []);
+            setProjects(ok(pr) ? norm<ProjectDto>(pr.value.data) : []);
+            setExperience(ok(e) ? norm<ExperienceDto>(e.value.data) : []);
+        })().catch((err) => {
+            console.error(err);
+            setError(err instanceof Error ? err.message : "Unbekannter Fehler");
+        });
     }, []);
+
 
     if (error) {
         return (

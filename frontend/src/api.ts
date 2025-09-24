@@ -8,8 +8,7 @@ interface RetryAxiosRequestConfig extends AxiosRequestConfig {
 
 const BASE_URL = import.meta.env.VITE_API_URL as string | undefined;
 
-// В проде лучше не падать на '/api'; требуем явный VITE_API_URL.
-// В деве позволим локальный фолбэк.
+
 const baseURL =
     BASE_URL ??
     (import.meta.env.DEV ? "/api" : (() => { throw new Error("VITE_API_URL is not set"); })());
