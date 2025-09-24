@@ -15,7 +15,9 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOriginPatterns(
                                 "http://localhost:5173",
-                                "https://*.github.io" // покрывает https://aibeni9111.github.io
+                                "https://*.github.io",
+                                "https://aibeni9111.github.io"
+
                         )
                         .allowedMethods("GET","POST","PUT","PATCH","DELETE","OPTIONS")
                         .allowedHeaders("*")
