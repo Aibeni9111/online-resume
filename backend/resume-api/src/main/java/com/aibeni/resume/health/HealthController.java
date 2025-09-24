@@ -1,13 +1,12 @@
 package com.aibeni.resume.health;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
 import java.util.Map;
-@CrossOrigin(origins = "https://aibeni9111.github.io")
+
 @RestController
 @RequestMapping("/api")
 public class HealthController {

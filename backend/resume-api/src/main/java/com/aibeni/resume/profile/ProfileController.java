@@ -2,7 +2,7 @@ package com.aibeni.resume.profile;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-@CrossOrigin(origins = "https://aibeni9111.github.io")
+
 @RestController
 @RequestMapping("/api/profile")
 public class ProfileController {
