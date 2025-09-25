@@ -6,17 +6,17 @@ export function AboutSection({ text }: { text: string }) {
 
     const highlights = [
         {
-            title: "Focus",
-            description: "Design systems, product discovery, and delightful end-to-end user journeys.",
+            title: "Fokus",
+            description: "Designsysteme, Product Discovery und begeisternde End-to-End-User-Journeys."
         },
         {
             title: "Toolbox",
-            description: "React ecosystem, TypeScript, Node, testing culture, and close collaboration with design teams.",
+            description: "React-Ökosystem, TypeScript, Node.js, gelebte Testkultur sowie enge Zusammenarbeit mit Design-Teams."
         },
         {
-            title: "Mindset",
-            description: "Build fast, observe, iterate. Craft experiences that balance business impact with user joy.",
-        },
+            title: "Arbeitsweise",
+            description: "Schnell umsetzen, beobachten, iterieren. Erlebnisse schaffen, die messbaren Business-Impact mit echter Nutzerfreude verbinden."
+        }
     ];
 
     return (
